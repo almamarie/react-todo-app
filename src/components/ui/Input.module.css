@@ -1,0 +1,15 @@
+.input {
+  background-color: transparent;
+  color: #fff;
+  padding: 5px;
+}
+
+.input::placeholder {
+  color: #aaa;
+}
+
+.input,
+.input:focus,
+.input:active {
+  border: 1px solid #aaa;
+}

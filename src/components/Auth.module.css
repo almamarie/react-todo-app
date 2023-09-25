@@ -1,0 +1,38 @@
+.h2 {
+  color: #6a9e98;
+  font-weight: 400;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.button-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.error {
+  color: red;
+  font-size: 12px;
+  text-align: center;
+}
+
+.button {
+  cursor: pointer;
+  background-color: #6a9e98;
+  border: none;
+  color: #333;
+  padding: 5px 10px;
+}
+
+.button:hover,
+.button:active {
+  background-color: #557e7a;
+  color: #111;
+}
