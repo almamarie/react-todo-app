@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import Input from "./ui/Input";
 import styles from "./Auth.module.css";
-// import { useRouter } from "next/router";
+import { useNavigate } from "react-router-dom";
 
 const Auth = () => {
   const [credentials, setCredentials] = useState({ email: "", password: "" });
   const [error, setError] = useState(false);
-  //   const router = useRouter();
+  const navigate = useNavigate();
 
   const formSubmitHandler = async (event) => {
     event.preventDefault();
@@ -25,8 +25,8 @@ const Auth = () => {
       return;
     }
     setError(false);
-    localStorage.setItem("auth", data.body);
-    // router.push("");
+    localStorage.setItem("auth", JSON.stringify(data.body));
+    navigate("/todos");
   };
 
   const emailChangeHandler = (email) => {
