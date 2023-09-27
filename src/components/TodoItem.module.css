@@ -14,3 +14,8 @@
   align-items: center;
   justify-content: space-between;
 }
+
+.completed {
+  display: block;
+  margin-top: 10px;
+}

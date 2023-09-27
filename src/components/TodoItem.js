@@ -14,6 +14,7 @@ const TodoItem = (props) => {
       return !prev;
     });
   };
+
   return (
     <li className={styles.li} onClick={toggleShowDetails}>
       <header className={styles.header}>
