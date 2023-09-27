@@ -1,0 +1,16 @@
+.li {
+  padding: 10px;
+  background-color: rgb(72, 71, 69);
+  color: #ccc;
+  font-size: 12px;
+  cursor: pointer;
+  border: 1px solid rgb(55, 79, 55);
+  border-left: 2px solid yellow;
+}
+.header {
+  height: 40px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}

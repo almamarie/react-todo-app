@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Input from "./ui/Input";
 import styles from "./Auth.module.css";
 import { useNavigate } from "react-router-dom";
+import { API_BASE_URL } from "../utils/api";
 
 const Auth = () => {
   const [credentials, setCredentials] = useState({ email: "", password: "" });
@@ -11,7 +12,7 @@ const Auth = () => {
   const formSubmitHandler = async (event) => {
     event.preventDefault();
 
-    const response = await fetch(`http://localhost:8080/api/v0/auth/signin`, {
+    const response = await fetch(`${API_BASE_URL}/auth/signin`, {
       method: "POST",
       body: JSON.stringify(credentials),
       headers: {

@@ -1,0 +1,28 @@
+.heading {
+  font-weight: normal;
+  text-align: center;
+  color: #87cdc6;
+  margin-bottom: 40px;
+}
+
+.create-todo {
+  display: grid;
+  grid-template-columns: 0.8fr 0.2fr;
+  height: 40px;
+}
+
+.input,
+.button {
+  border: 1px solid #aaa;
+  background-color: transparent;
+}
+
+.input {
+  border-right: 0;
+  padding: 0 10px;
+}
+
+.button {
+  margin: 0;
+  color: #87cdc6;
+}
