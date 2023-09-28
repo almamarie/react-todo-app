@@ -1,31 +1,19 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useContext } from "react";
 import styles from "./Todos.module.css";
 import Spinner from "./ui/Spinner";
 import TodoItem from "./TodoItem";
-import useTodo from "../hooks/use-todo";
+import TodoContext from "../context/todo-context";
 
 const Todos = (props) => {
-  const [todos, setTodos] = useState({});
-  const { getAllTodos, error, isLoading } = useTodo();
-
-  const { userId } = props.user;
-  const { token } = props;
-
-  const applyData = (todoData) => {
-    setTodos(todoData);
+  const todosCtx = useContext(TodoContext);
+  console.log(todosCtx);
+  const fetchTodos = () => {
+    todosCtx.fetchTodos();
   };
-
-  const fetchTodos = useCallback(() => {
-    getAllTodos(userId, token, applyData);
-  }, [getAllTodos, token, userId]);
-
-  useEffect(() => {
-    fetchTodos();
-  }, [fetchTodos]);
 
   return (
     <div className={styles.wrapper}>
-      {error && (
+      {todosCtx.error === true && (
         <div className={styles["error-wrapper"]}>
           <span className={styles.error}>
             error fetching todos.
@@ -37,18 +25,17 @@ const Todos = (props) => {
         </div>
       )}
 
-      {isLoading && (
+      {todosCtx.isLoading && (
         <div className={styles["loading-wrapper"]}>
           <Spinner />
-          <span>Fetching todos</span>
         </div>
       )}
-      {todos.total > 0 && (
+      {todosCtx.totalTodos > 0 && (
         <ul className={styles.todos}>
           <span
             className={styles["number-of-todos"]}
-          >{`showing ${todos.total} todos`}</span>
-          {todos.todos.map((to, index) => {
+          >{`showing ${todosCtx.totalTodos} todos`}</span>
+          {todosCtx.todos.map((to, index) => {
             return <TodoItem key={index} todo={to} userId token />;
           })}
         </ul>

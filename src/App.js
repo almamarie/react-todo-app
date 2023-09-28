@@ -7,6 +7,7 @@ import {
 import "./App.css";
 import Auth from "./components/Auth";
 import Todo from "./components/Todo";
+import TodosContextLayout from "./components/layout-routes/todos";
 
 function App() {
   return (
@@ -15,7 +16,9 @@ function App() {
         <Router>
           <Routes>
             <Route path="/" element={<Navigate to="/todos" />} />
-            <Route path="/todos" element={<Todo />} />
+            <Route element={<TodosContextLayout />}>
+              <Route path="/todos" element={<Todo />} />
+            </Route>
             <Route path="/signin" element={<Auth />} />
           </Routes>
         </Router>
