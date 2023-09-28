@@ -27,10 +27,31 @@ const useTodo = () => {
     }
   }, []);
 
+  const deleteTodo = async (requestData, applyData) => {
+    const { userId, todoId, token } = requestData;
+    try {
+      setIsLoading(true);
+      const response = await fetch(`${API_BASE_URL}/todo/${userId}/${todoId}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      const data = await response.json();
+      if (!response.ok) {
+        throw new Error();
+      } else {
+        applyData(data.success);
+        setError(false);
+      }
+      setIsLoading(false);
+    } catch (error) {
+      setError(true);
+    }
+  };
+
   return {
     isLoading,
     error,
     getAllTodos,
+    deleteTodo,
   };
 };
 

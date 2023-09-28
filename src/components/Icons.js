@@ -1,6 +1,15 @@
+import useTodo from "../hooks/use-todo";
 import styles from "./Icons.module.css";
 
 const Icons = (props) => {
+  const { userId, token, todoId } = props;
+  const { deleteTodo } = useTodo();
+
+  const deleteTodoHandler = () => {
+    deleteTodo(...props, () => {
+      props.onDelete();
+    });
+  };
   return (
     <div className={styles.wrapper}>
       {icons["update"]}

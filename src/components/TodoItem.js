@@ -5,9 +5,11 @@ import Icons from "./Icons";
 
 const TodoItem = (props) => {
   const [showDetails, setShowDetails] = useState(false);
-  const { todo } = props;
+  const { todo, userId, token } = props;
   const [date, time] = extractDateAndTime(todo.deadline);
   const amOrPm = isAMorPM(todo.deadline);
+
+  const iconsProps = { userId, token, todoId: todo.todoId };
 
   const toggleShowDetails = () => {
     setShowDetails((prev) => {
@@ -23,7 +25,7 @@ const TodoItem = (props) => {
           <span>{`${date} ${time} ${amOrPm}`}</span>
         </div>
 
-        <Icons />
+        <Icons userData={iconsProps} />
       </header>
 
       {showDetails && (

@@ -49,7 +49,7 @@ const Todos = (props) => {
             className={styles["number-of-todos"]}
           >{`showing ${todos.total} todos`}</span>
           {todos.todos.map((to, index) => {
-            return <TodoItem key={index} todo={to} />;
+            return <TodoItem key={index} todo={to} userId token />;
           })}
         </ul>
       )}
