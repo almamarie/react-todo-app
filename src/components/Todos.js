@@ -6,7 +6,6 @@ import TodoContext from "../context/todo-context";
 
 const Todos = (props) => {
   const todosCtx = useContext(TodoContext);
-  console.log(todosCtx);
   const fetchTodos = () => {
     todosCtx.fetchTodos();
   };
@@ -16,7 +15,7 @@ const Todos = (props) => {
       {todosCtx.error === true && (
         <div className={styles["error-wrapper"]}>
           <span className={styles.error}>
-            error fetching todos.
+            An error occured.
             <br />
             <button className={styles["replay-button"]} onClick={fetchTodos}>
               Retry
@@ -36,7 +35,7 @@ const Todos = (props) => {
             className={styles["number-of-todos"]}
           >{`showing ${todosCtx.totalTodos} todos`}</span>
           {todosCtx.todos.map((to, index) => {
-            return <TodoItem key={index} todo={to} userId token />;
+            return <TodoItem key={index} todo={to} />;
           })}
         </ul>
       )}
