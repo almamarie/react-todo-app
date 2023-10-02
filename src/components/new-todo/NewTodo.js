@@ -1,8 +1,11 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import styles from "./NewTodo.module.css";
 import Input from "../ui/Input";
+import TodoContext from "../../context/todo-context";
 
 const NewTodo = () => {
+  const todoCtx = useContext(TodoContext);
+
   const [showNewTodoForm, setShowNewTodoForm] = useState(false);
   const [newTodoData, setNewTodoData] = useState({
     title: "",
@@ -29,6 +32,11 @@ const NewTodo = () => {
     setShowNewTodoForm((prev) => !prev);
   };
 
+  const formSubmitHandler = (event) => {
+    event.preventDefault();
+    todoCtx.createNewTodo({ ...newTodoData }, toggleShowTodoForm);
+  };
+
   if (!showNewTodoForm) {
     return (
       <button
@@ -42,7 +50,7 @@ const NewTodo = () => {
   }
 
   return (
-    <form className={styles.form}>
+    <form className={styles.form} onSubmit={formSubmitHandler}>
       <h3 className={styles.heading}>New Todo</h3>
       <header className={styles.header}>
         <Input

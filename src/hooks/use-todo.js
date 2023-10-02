@@ -49,12 +49,41 @@ const useTodo = () => {
     }
   };
 
+  const createNewTodo = async (requestData, applyData) => {
+    const { userId, token } = requestData;
+    try {
+      setIsLoading(true);
+      const response = await fetch(`${API_BASE_URL}/todo/${userId}/new`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(requestData.todoData),
+      });
+      const data = await response.json();
+      if (!response.ok) {
+        throw new Error();
+      } else {
+        applyData(data.body);
+        setError(false);
+      }
+    } catch (error) {
+      setError(true);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return {
     isLoading,
     error,
     getAllTodos,
     deleteTodo,
+    createNewTodo,
   };
 };
 
 export default useTodo;
+
+// Start building a beautiful house for yourself. Plan the house and get the building plans and architectural designs ready. Then Buy at least 4 acres of land in a quiet and beautiful place and start building the foundation of the house.

@@ -21,6 +21,7 @@ export const TodoContextProvider = (props) => {
   const {
     getAllTodos,
     deleteTodo,
+    createNewTodo: createNewTodoCtx,
     error: useTodoError,
     isLoading: useTodoIsLoading,
   } = useTodo();
@@ -51,6 +52,15 @@ export const TodoContextProvider = (props) => {
     });
   };
 
+  const createNewTodo = async (newTodoData, applyData) => {
+    const requestData = { userId, token, todoData: newTodoData };
+    await createNewTodoCtx(requestData, (updatedTodos) => {
+      setTodos(updatedTodos.data);
+      setTotalTodos(updatedTodos.total);
+      applyData();
+    });
+  };
+
   useEffect(() => {
     const auth = JSON.parse(localStorage.getItem("auth"));
     if (!auth || !auth.token) {
@@ -71,6 +81,7 @@ export const TodoContextProvider = (props) => {
         isLoading: useTodoIsLoading,
         fetchTodos,
         deleteTodo: deleteTodoHandler,
+        createNewTodo,
       }}
     >
       {props.children}
