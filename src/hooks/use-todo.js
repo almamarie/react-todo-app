@@ -75,12 +75,42 @@ const useTodo = () => {
     }
   };
 
+  const updateTodo = async (requestData, applyData) => {
+    const { userId, token, todoId } = requestData;
+    try {
+      setIsLoading(true);
+      const response = await fetch(
+        `${API_BASE_URL}/todo/${userId}/${todoId}/update`,
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify(requestData.todoData),
+        }
+      );
+      const data = await response.json();
+      if (!response.ok) {
+        throw new Error();
+      } else {
+        applyData(data.body);
+        setError(false);
+      }
+    } catch (error) {
+      setError(true);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return {
     isLoading,
     error,
     getAllTodos,
     deleteTodo,
     createNewTodo,
+    updateTodo,
   };
 };
 

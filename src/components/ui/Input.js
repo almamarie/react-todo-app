@@ -14,6 +14,7 @@ const Input = (props) => {
         name={props.name}
         required={props.required || false}
         placeholder={props.name}
+        value={props.value}
         onChange={changeHandler}
       />
     );
@@ -25,6 +26,7 @@ const Input = (props) => {
       name={props.name}
       required={props.required || false}
       placeholder={props.name}
+      value={props.value}
       onChange={changeHandler}
     />
   );
