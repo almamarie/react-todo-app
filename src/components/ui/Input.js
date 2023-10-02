@@ -6,9 +6,21 @@ const Input = (props) => {
     const value = event.target.value;
     props.onChange(value);
   };
+
+  if (props.textarea) {
+    return (
+      <textarea
+        className={` ${styles.input} ${styles.textarea} ${props.className}`}
+        name={props.name}
+        required={props.required || false}
+        placeholder={props.name}
+        onChange={changeHandler}
+      />
+    );
+  }
   return (
     <input
-      className={styles.input}
+      className={` ${styles.input} ${props.className}`}
       type={props.type}
       name={props.name}
       required={props.required || false}

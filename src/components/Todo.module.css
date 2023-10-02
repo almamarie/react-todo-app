@@ -25,4 +25,9 @@
 .button {
   margin: 0;
   color: #87cdc6;
+  cursor: pointer;
+}
+
+.new-todo-wrapper {
+  text-align: center;
 }

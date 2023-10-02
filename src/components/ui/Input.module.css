@@ -13,3 +13,8 @@
 .input:active {
   border: 1px solid #aaa;
 }
+
+.textarea {
+  width: 98%;
+  height: 50px;
+}

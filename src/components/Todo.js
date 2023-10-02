@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./Todo.module.css";
 import Todos from "./Todos";
+import NewTodo from "./new-todo/NewTodo";
 
 const Todo = () => {
   const [user, setUser] = useState({});
@@ -28,10 +29,13 @@ const Todo = () => {
           required
         />
         <button className={styles.button} type="button">
-          Add
+          Search
         </button>
       </div>
       <Todos user={user} token={tokenRef.current} />
+      <div className={styles["new-todo-wrapper"]}>
+        <NewTodo />
+      </div>
     </div>
   );
 };

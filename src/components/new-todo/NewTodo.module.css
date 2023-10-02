@@ -1,0 +1,46 @@
+.heading {
+  color: #87cdc6;
+}
+.form {
+  margin-top: 10px;
+  padding: 10px;
+  background-color: rgb(72, 71, 69);
+  color: #ccc;
+  font-size: 12px;
+  cursor: pointer;
+  border: 1px solid rgb(55, 79, 55);
+}
+.header {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.input--title {
+  width: 300px;
+}
+.buttons {
+  margin-top: 10px;
+}
+
+.cancel-todo-btn,
+.add-todo-btn,
+.new-todo-btn {
+  width: 100px;
+  padding: 5px 0;
+  border: 1px solid #aaa;
+  background-color: transparent;
+  color: #87cdc6;
+  cursor: pointer;
+}
+
+.cancel-todo-btn:hover,
+.add-todo-btn:hover,
+.neww-todo-btn:hover {
+  color: #6ca49e;
+}
+
+.cancel-todo-btn {
+  margin-right: 10px;
+}
