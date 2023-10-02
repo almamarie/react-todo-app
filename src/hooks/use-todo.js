@@ -104,6 +104,39 @@ const useTodo = () => {
     }
   };
 
+  const completeTodo = async (requestData, applyData) => {
+    const { userId, token, todoId } = requestData;
+    console.log(requestData);
+    try {
+      setIsLoading(true);
+      const response = await fetch(
+        `${API_BASE_URL}/todo/${userId}/${todoId}/complete`,
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify(requestData.todoData),
+        }
+      );
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error();
+      } else {
+        applyData(data.body);
+        setError(false);
+      }
+    } catch (error) {
+      console.log(error);
+      setError(true);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return {
     isLoading,
     error,
@@ -111,6 +144,7 @@ const useTodo = () => {
     deleteTodo,
     createNewTodo,
     updateTodo,
+    completeTodo,
   };
 };
 
