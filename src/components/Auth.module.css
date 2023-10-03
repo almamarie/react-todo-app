@@ -2,14 +2,14 @@
   color: #6a9e98;
   font-weight: 400;
   text-align: center;
-  margin-bottom: 10px;
+  margin-bottom: 1rem;
 }
 
 .inputs {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  margin-bottom: 10px;
+  gap: 1rem;
+  margin-bottom: 1rem;
 }
 
 .button-wrapper {
@@ -19,7 +19,7 @@
 
 .error {
   color: red;
-  font-size: 12px;
+  font-size: 1.2rem;
   text-align: center;
 }
 
@@ -28,7 +28,7 @@
   background-color: #6a9e98;
   border: none;
   color: #333;
-  padding: 5px 10px;
+  padding: 0.5rem 1rem;
 }
 
 .button:hover,

@@ -1,30 +1,31 @@
 .li {
-  padding: 10px;
+  padding: 1rem;
   background-color: rgb(72, 71, 69);
   color: #ccc;
-  font-size: 12px;
+  font-size: 1.2rem;
   cursor: pointer;
-  border: 1px solid rgb(55, 79, 55);
+  border: 0.1rem solid rgb(55, 79, 55);
 }
 
 .todo--complete {
-  border-left: 2px solid #557e7a;
+  border-left: 0.2rem solid #557e7a;
 }
 
 .todo--not-complete {
-  border-left: 2px solid yellow;
+  border-left: 0.2rem solid yellow;
 }
 .header {
-  height: 40px;
+  height: 4rem;
 
-  display: flex;
+  display: grid;
+  grid-template-columns: 50% 30% 10%;
   align-items: center;
   justify-content: space-between;
 }
 
 .completed {
   display: block;
-  margin-top: 10px;
+  margin-top: 1rem;
 }
 
 .complete-wrapper {
@@ -34,12 +35,19 @@
 
 .complete-btn {
   background-color: transparent;
-  border: 1px solid rgb(32, 124, 32);
-  padding: 5px 10px;
+  border: 0.1rem solid rgb(32, 124, 32);
+  padding: 0.5rem 1rem;
   color: #fff;
   cursor: pointer;
 }
 
 .complete-btn:hover {
   background-color: rgb(22, 88, 22);
+}
+
+.title,
+.deadline {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }

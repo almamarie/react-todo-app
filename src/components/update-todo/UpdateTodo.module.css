@@ -2,8 +2,8 @@
   color: #87cdc6;
 }
 .form {
-  margin-top: 10px;
-  padding: 10px;
+  margin-top: 1rem;
+  padding: 1rem;
   background-color: rgb(72, 71, 69);
   color: #ccc;
   font-size: 12px;
@@ -21,7 +21,7 @@
   width: 300px;
 }
 .buttons {
-  margin-top: 10px;
+  margin-top: 1rem;
 }
 
 .cancel-todo-btn,
@@ -42,5 +42,5 @@
 }
 
 .cancel-todo-btn {
-  margin-right: 10px;
+  margin-right: 1rem;
 }

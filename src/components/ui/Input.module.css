@@ -1,7 +1,7 @@
 .input {
   background-color: transparent;
   color: #fff;
-  padding: 5px;
+  padding: 0.5rem;
 }
 
 .input::placeholder {
@@ -11,10 +11,10 @@
 .input,
 .input:focus,
 .input:active {
-  border: 1px solid #aaa;
+  border: 0.1rem solid #aaa;
 }
 
 .textarea {
   width: 98%;
-  height: 50px;
+  height: 5rem;
 }

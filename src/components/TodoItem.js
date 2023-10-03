@@ -40,16 +40,18 @@ const TodoItem = (props) => {
       }`}
     >
       <header className={styles.header}>
-        <span>{todo.title}</span>
+        <span className={styles.title}>{todo.title}</span>
         <div className={styles.deadline}>
           <span>{`${date} ${time} ${amOrPm}`}</span>
         </div>
 
-        <Icons
-          todoId={todoId}
-          onShowDetails={toggleShowDetails}
-          onUpdate={toggleUpdateHandler}
-        />
+        <div className={styles.icons}>
+          <Icons
+            todoId={todoId}
+            onShowDetails={toggleShowDetails}
+            onUpdate={toggleUpdateHandler}
+          />
+        </div>
       </header>
 
       {showDetails && (

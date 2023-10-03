@@ -2,24 +2,24 @@
   font-weight: normal;
   text-align: center;
   color: #87cdc6;
-  margin-bottom: 40px;
+  margin-bottom: 4rem;
 }
 
 .create-todo {
   display: grid;
   grid-template-columns: 0.8fr 0.2fr;
-  height: 40px;
+  height: 4rem;
 }
 
 .input,
 .button {
-  border: 1px solid #aaa;
+  border: 0.1rem solid #aaa;
   background-color: transparent;
 }
 
 .input {
   border-right: 0;
-  padding: 0 10px;
+  padding: 0 1rem;
 }
 
 .button {
