@@ -20,6 +20,8 @@
 .input {
   border-right: 0;
   padding: 0 1rem;
+  caret-color: #fff;
+  color: #fff;
 }
 
 .button {
