@@ -1,27 +1,42 @@
 import {
-  BrowserRouter as Router,
-  Route,
-  Routes,
+  createBrowserRouter,
   Navigate,
+  RouterProvider,
 } from "react-router-dom";
 import "./App.css";
-import Auth from "./components/Auth";
-import Todo from "./components/Todo";
 import TodosContextLayout from "./components/layout-routes/todos";
+import TodoPage from "./pages/todo/TodoPage";
+import AuthPage from "./pages/auth/AuthPage";
 
 function App() {
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      children: [
+        {
+          index: true,
+          element: <Navigate to="todos" replace />,
+        },
+        {
+          element: <TodosContextLayout />,
+          children: [
+            {
+              path: "todos",
+              element: <TodoPage />,
+            },
+          ],
+        },
+        {
+          path: "/auth",
+          element: <AuthPage />,
+        },
+      ],
+    },
+  ]);
   return (
     <div className="app-wrapper">
       <div className="app">
-        <Router>
-          <Routes>
-            <Route path="/" element={<Navigate to="/todos" />} />
-            <Route element={<TodosContextLayout />}>
-              <Route path="/todos" element={<Todo />} />
-            </Route>
-            <Route path="/signin" element={<Auth />} />
-          </Routes>
-        </Router>
+        <RouterProvider router={router}></RouterProvider>
       </div>
     </div>
   );

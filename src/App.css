@@ -8,7 +8,7 @@
 }
 
 .app {
-  width: 60%;
+  max-width: 60%;
   margin: 0 auto;
 }
 
@@ -22,7 +22,7 @@
   }
 
   .app {
-    width: 80%;
+    max-width: 80%;
   }
 }
 
@@ -52,6 +52,6 @@
 
 @media (max-width: 34.1em) {
   .app {
-    width: 90%;
+    max-width: 90%;
   }
 }

@@ -1,12 +1,14 @@
 import React, { useState } from "react";
-import Input from "./ui/Input";
-import styles from "./Auth.module.css";
+import Input from "../ui/Input";
+import styles from "./SignIn.module.css";
 import { useNavigate } from "react-router-dom";
-import { API_BASE_URL } from "../utils/api";
+import { API_BASE_URL } from "../../utils/api";
+import PasswordInput from "../ui/PasswordInput";
 
-const Auth = () => {
+const SignIn = (props) => {
   const [credentials, setCredentials] = useState({ email: "", password: "" });
   const [error, setError] = useState(false);
+
   const navigate = useNavigate();
 
   const formSubmitHandler = async (event) => {
@@ -51,13 +53,14 @@ const Auth = () => {
           onChange={emailChangeHandler}
           required={true}
         />
-        <Input
-          type="password"
+        <PasswordInput
           name="password"
           onChange={passwordChangeHandler}
+          value={credentials.password}
           required={true}
         />
       </div>
+
       {error && (
         <span className={styles.error}>
           incorrect email and password combination
@@ -68,8 +71,18 @@ const Auth = () => {
           Sign in
         </button>
       </div>
+
+      <p className={styles["dont-have-account"]}>
+        Don't have an account?{" "}
+        <span
+          className={styles["signup-link"]}
+          onClick={props.onChangeSwitchSignUp}
+        >
+          create one
+        </span>
+      </p>
     </form>
   );
 };
 
-export default Auth;
+export default SignIn;

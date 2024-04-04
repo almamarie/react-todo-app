@@ -12,7 +12,10 @@
 .input:focus,
 .input:active {
   border: 0.1rem solid #aaa;
+  outline: none;
+  -webkit-outline:none;
 }
+
 
 .textarea {
   width: 98%;
