@@ -65,7 +65,7 @@ const TodoItem = (props) => {
               type="button"
               className={styles["complete-btn"]}
               onClick={completeTodo}
-            >{`Set ${todo.completed ? "complete" : "not completed"}`}</button>
+            >{`Set ${todo.completed ? "not completed" : "completed"}`}</button>
           </div>
         </div>
       )}

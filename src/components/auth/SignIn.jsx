@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Input from "../ui/Input";
 import styles from "./SignIn.module.css";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { API_BASE_URL } from "../../utils/api";
 import PasswordInput from "../ui/PasswordInput";
 
@@ -74,12 +74,9 @@ const SignIn = (props) => {
 
       <p className={styles["dont-have-account"]}>
         Don't have an account?{" "}
-        <span
-          className={styles["signup-link"]}
-          onClick={props.onChangeSwitchSignUp}
-        >
+        <Link to={"/auth/signup"} className={styles["signup-link"]}>
           create one
-        </span>
+        </Link>
       </p>
     </form>
   );
