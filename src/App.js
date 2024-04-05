@@ -7,8 +7,7 @@ import "./App.css";
 import TodosContextLayout from "./components/layout-routes/todos";
 import TodoPage from "./pages/todo/TodoPage";
 import AuthPage from "./pages/auth/AuthPage";
-import SignIn from "./components/auth/SignIn";
-import SignUp from "./components/auth/SignUp";
+
 
 function App() {
   const router = createBrowserRouter([
