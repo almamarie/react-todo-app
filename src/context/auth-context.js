@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { API_BASE_URL } from "../utils/api";
 import { useNavigate } from "react-router-dom";
 
@@ -19,7 +19,7 @@ export const AuthContextProvider = (props) => {
 
   const [isLoading, setIsLoading] = useState(false);
 
-  const verifyAuth = async () => {
+  const verifyAuth = useCallback(async () => {
     console.log("Verifying User: ");
     setIsLoading(true);
     try {
@@ -50,11 +50,11 @@ export const AuthContextProvider = (props) => {
       navigate("/auth/signin");
     }
     setIsLoading(false);
-  };
+  }, [navigate]);
 
   useEffect(() => {
     verifyAuth();
-  }, []);
+  }, [verifyAuth]);
 
   return (
     <AuthContext.Provider
