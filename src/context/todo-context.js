@@ -80,7 +80,7 @@ export const TodoContextProvider = (props) => {
   };
 
   const completeTodo = async (updatedTodo, applyData) => {
-    console.log("Updated todo: ", updatedTodo);
+    // console.log("Updated todo: ", updatedTodo);
     const requestData = {
       userId,
       todoId: updatedTodo.todoId,

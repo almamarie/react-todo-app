@@ -28,7 +28,10 @@ const SignIn = (props) => {
       return;
     }
     setError(false);
-    localStorage.setItem("auth", JSON.stringify(data.body));
+    localStorage.setItem(
+      "auth",
+      JSON.stringify({ ...data.body, isLoggedIn: false })
+    );
     navigate("/todos");
   };
 

@@ -3,7 +3,7 @@ import styles from "./NewTodo.module.css";
 import Input from "../ui/Input";
 import TodoContext from "../../context/todo-context";
 
-const NewTodo = () => {
+const NewTodo = (props) => {
   const todoCtx = useContext(TodoContext);
 
   const [showNewTodoForm, setShowNewTodoForm] = useState(false);
@@ -30,6 +30,7 @@ const NewTodo = () => {
 
   const toggleShowTodoForm = () => {
     setShowNewTodoForm((prev) => !prev);
+    props.onToggleLogoutBtn();
   };
 
   const formSubmitHandler = (event) => {

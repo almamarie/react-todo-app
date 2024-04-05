@@ -7,6 +7,7 @@ const AuthContext = React.createContext({
   token: "",
   isLoggedIn: false,
   isLoading: false,
+  logout: () => {},
 });
 
 export const AuthContextProvider = (props) => {
@@ -20,7 +21,7 @@ export const AuthContextProvider = (props) => {
   const [isLoading, setIsLoading] = useState(false);
 
   const verifyAuth = useCallback(async () => {
-    console.log("Verifying User: ");
+    // console.log("Verifying User: ");
     setIsLoading(true);
     try {
       const auth = JSON.parse(localStorage.getItem("auth"));
@@ -36,21 +37,26 @@ export const AuthContextProvider = (props) => {
         },
       });
       const data = await response.json();
-      console.log("data: ", data);
+      //   console.log("data: ", data);
       if (!response.ok || !data.success) {
         throw new Error();
       }
 
       setAuth({ isLoggedIn: true, token: auth.token, user: auth.user });
-      console.log("User verified: ", auth);
+      //   console.log("User verified: ", auth);
     } catch (error) {
-      console.log("Error: ", error);
+      //   console.log("Error: ", error);
       setAuth({ isLoggedIn: false, token: null });
-      console.log("User not verified");
+      //   console.log("User not verified");
       navigate("/auth/signin");
     }
     setIsLoading(false);
   }, [navigate]);
+
+  const logout = () => {
+    localStorage.removeItem("auth");
+    navigate("/auth/signin");
+  };
 
   useEffect(() => {
     verifyAuth();
@@ -61,6 +67,7 @@ export const AuthContextProvider = (props) => {
       value={{
         ...auth,
         isLoading,
+        logout,
       }}
     >
       {props.children}
