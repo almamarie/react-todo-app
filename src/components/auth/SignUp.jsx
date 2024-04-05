@@ -12,30 +12,38 @@ const SignUp = (props) => {
     email: "",
     password: "",
   });
-  const [error, setError] = useState(false);
+  const [error, setError] = useState({ status: false, message: "" });
 
   const navigate = useNavigate();
 
   const formSubmitHandler = async (event) => {
     event.preventDefault();
 
-    console.log("Credentials: ", credentials);
-    const response = await fetch(`${API_BASE_URL}/user/new`, {
-      method: "POST",
-      body: JSON.stringify(credentials),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-    const data = await response.json();
-    console.log(data);
-    if (!response.ok || data.status === false) {
-      setError(true);
-      return;
+    try {
+      console.log("Credentials: ", credentials);
+      const response = await fetch(`${API_BASE_URL}/user/new`, {
+        method: "POST",
+        body: JSON.stringify(credentials),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const data = await response.json();
+      console.log(data);
+      if (!response.ok || data.status === false) {
+        setError({ status: true, message: data.body });
+        return;
+      }
+      setError({ status: false, message: "" });
+      localStorage.setItem("auth", JSON.stringify(data.body));
+      navigate("/auth/signin");
+    } catch (err) {
+      console.log("Error: ", err);
+      setError({
+        status: true,
+        message: "Error creating user. try again later",
+      });
     }
-    setError(false);
-    localStorage.setItem("auth", JSON.stringify(data.body));
-    navigate("/auth/signin");
   };
 
   const credentialsController = (credentialName) => {
@@ -43,14 +51,13 @@ const SignUp = (props) => {
       setCredentials((prev) => {
         const newData = { ...prev };
         newData[credentialName] = value;
-        //   return { ...prev, password };
         return newData;
       });
     };
   };
   return (
     <form className={styles.form} onSubmit={formSubmitHandler}>
-      <h2 className={styles.h2}>Sign In</h2>
+      <h2 className={styles.h2}>Create Account</h2>
       <div className={styles.inputs}>
         <Input
           type="text"
@@ -81,11 +88,7 @@ const SignUp = (props) => {
         />
       </div>
 
-      {error && (
-        <span className={styles.error}>
-          incorrect email and password combination
-        </span>
-      )}
+      {error && <span className={styles.error}>{error.message}</span>}
       <div className={styles["button-wrapper"]}>
         <button type="submit" className={styles.button}>
           Create account
