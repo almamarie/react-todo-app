@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import Input from "../ui/Input";
-import styles from "./SignIn.module.css";
+import signIntyles from "./SignIn.module.css";
+import styles from "./SignUp.module.css";
 import { Link, useNavigate } from "react-router-dom";
 import { API_BASE_URL } from "../../utils/api";
 import PasswordInput from "../ui/PasswordInput";
+import Button from "../ui/Button";
+import Spinner from "../ui/Spinner";
 
 const SignUp = (props) => {
   const [credentials, setCredentials] = useState({
@@ -13,12 +16,13 @@ const SignUp = (props) => {
     password: "",
   });
   const [error, setError] = useState({ status: false, message: "" });
+  const [isLoading, setIsLoading] = useState(false);
 
   const navigate = useNavigate();
 
   const formSubmitHandler = async (event) => {
     event.preventDefault();
-
+    setIsLoading(true);
     try {
       console.log("Credentials: ", credentials);
       const response = await fetch(`${API_BASE_URL}/user/new`, {
@@ -32,10 +36,11 @@ const SignUp = (props) => {
       console.log(data);
       if (!response.ok || data.status === false) {
         setError({ status: true, message: data.body });
+        setIsLoading(false);
         return;
       }
       setError({ status: false, message: "" });
-      localStorage.setItem("auth", JSON.stringify(data.body));
+      // localStorage.setItem("auth", JSON.stringify(data.body));
       navigate("/auth/signin");
     } catch (err) {
       console.log("Error: ", err);
@@ -44,6 +49,7 @@ const SignUp = (props) => {
         message: "Error creating user. try again later",
       });
     }
+    setIsLoading(false);
   };
 
   const credentialsController = (credentialName) => {
@@ -57,8 +63,8 @@ const SignUp = (props) => {
   };
   return (
     <form className={styles.form} onSubmit={formSubmitHandler}>
-      <h2 className={styles.h2}>Create Account</h2>
-      <div className={styles.inputs}>
+      <h2 className={signIntyles.h2}>Create Account</h2>
+      <div className={signIntyles.inputs}>
         <Input
           type="text"
           name="first name"
@@ -88,18 +94,22 @@ const SignUp = (props) => {
         />
       </div>
 
-      {error && <span className={styles.error}>{error.message}</span>}
-      <div className={styles["button-wrapper"]}>
-        <button type="submit" className={styles.button}>
-          Create account
-        </button>
+      {error && <span className={signIntyles.error}>{error.message}</span>}
+      <div className={signIntyles["button-wrapper"]}>
+        <Button type="submit">Create account</Button>
       </div>
 
-      <p className={styles["dont-have-account"]}>
+      {isLoading && (
+        <div className={styles["loading-wrapper"]}>
+          <Spinner />
+        </div>
+      )}
+
+      <p className={signIntyles["dont-have-account"]}>
         Have an account?{" "}
         <Link
           to={"/auth/signin"}
-          className={styles["signup-link"]}
+          className={signIntyles["signup-link"]}
           onClick={props.onChangeSwitchSignUp}
         >
           sign in

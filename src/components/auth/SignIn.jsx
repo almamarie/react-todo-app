@@ -4,15 +4,18 @@ import styles from "./SignIn.module.css";
 import { Link, useNavigate } from "react-router-dom";
 import { API_BASE_URL } from "../../utils/api";
 import PasswordInput from "../ui/PasswordInput";
+import Button from "../ui/Button";
+import Spinner from "../ui/Spinner";
 
 const SignIn = (props) => {
   const [credentials, setCredentials] = useState({ email: "", password: "" });
   const [error, setError] = useState(false);
-
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
   const formSubmitHandler = async (event) => {
     event.preventDefault();
+    setIsLoading(true);
 
     const response = await fetch(`${API_BASE_URL}/auth/signin`, {
       method: "POST",
@@ -25,6 +28,7 @@ const SignIn = (props) => {
     console.log(data);
     if (!response.ok || data.status === false) {
       setError(true);
+      setIsLoading(false);
       return;
     }
     setError(false);
@@ -33,6 +37,7 @@ const SignIn = (props) => {
       JSON.stringify({ ...data.body, isLoggedIn: false })
     );
     navigate("/todos");
+    setIsLoading(false);
   };
 
   const emailChangeHandler = (email) => {
@@ -48,6 +53,11 @@ const SignIn = (props) => {
   };
   return (
     <form className={styles.form} onSubmit={formSubmitHandler}>
+      {isLoading && (
+        <div className={styles["loading-wrapper"]}>
+          <Spinner />
+        </div>
+      )}
       <h2 className={styles.h2}>Sign In</h2>
       <div className={styles.inputs}>
         <Input
@@ -70,9 +80,7 @@ const SignIn = (props) => {
         </span>
       )}
       <div className={styles["button-wrapper"]}>
-        <button type="submit" className={styles.button}>
-          Sign in
-        </button>
+        <Button type="submit">Sign in</Button>
       </div>
 
       <p className={styles["dont-have-account"]}>
